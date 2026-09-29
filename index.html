@@ -5,21 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyMate AI</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 
 <body>
-    
-    <h1>StudyMate AI</h1>
 
+    <h1>StudyMate AI 🎓</h1>
     <p>Your AI-powered study companion.</p>
 
     <button id="startButton">Start Learning</button>
 
+    <div id="studyArea" style="display: none;">
+        <h2>What do you want to study?</h2>
+
+        <input
+            id="subjectInput"
+            type="text"
+            placeholder="Enter a subject..."
+        >
+
+        <button id="continueButton">Continue</button>
+
+        <p id="message"></p>
+    </div>
+
     <script>
-    document.getElementById("startButton").onclick = function() {
-        alert("Welcome to StudyMate AI! 🎓");
-    };
+        document.getElementById("startButton").onclick = function() {
+            document.getElementById("studyArea").style.display = "block";
+            document.getElementById("startButton").style.display = "none";
+        };
+
+        document.getElementById("continueButton").onclick = function() {
+            const subject = document.getElementById("subjectInput").value;
+
+            if (subject === "") {
+                document.getElementById("message").textContent =
+                    "Please enter a subject!";
+            } else {
+                document.getElementById("message").textContent =
+                    "Great! Let's learn " + subject + " 📚";
+            }
+        };
     </script>
 
 </body>
