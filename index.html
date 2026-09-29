@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>StudyMate AI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <h1>StudyMate AI 🎓</h1>
+
     <p>Your AI-powered study companion.</p>
 
     <button id="startButton">Start Learning</button>
 
     <div id="studyArea" style="display: none;">
-        <h2>Quick Notes</h2>
 
-        <textarea
-            id="notesInput"
-            placeholder="Write your study notes here..."
-        ></textarea>
-
-        <br>
-
-        <button id="saveNotesButton">Save Notes</button>
-
-        <p id="notesMessage"></p>
         <h2>What do you want to study?</h2>
 
         <input
@@ -38,25 +31,68 @@
         <button id="continueButton">Continue</button>
 
         <p id="message"></p>
+
+        <h2>Quick Notes 📚</h2>
+
+        <textarea
+            id="notesInput"
+            placeholder="Write your study notes here..."
+        ></textarea>
+
+        <br>
+
+        <button id="saveNotesButton">Save Notes</button>
+
+        <p id="notesMessage"></p>
+
     </div>
 
+    <!-- JavaScript starts here -->
     <script>
+
         document.getElementById("startButton").onclick = function() {
             document.getElementById("studyArea").style.display = "block";
             document.getElementById("startButton").style.display = "none";
         };
 
         document.getElementById("continueButton").onclick = function() {
-            const subject = document.getElementById("subjectInput").value;
+
+            const subject =
+                document.getElementById("subjectInput").value;
 
             if (subject === "") {
+
                 document.getElementById("message").textContent =
                     "Please enter a subject!";
+
             } else {
+
                 document.getElementById("message").textContent =
                     "Great! Let's learn " + subject + " 📚";
+
             }
         };
+
+        document.getElementById("saveNotesButton").onclick = function() {
+
+            const notes =
+                document.getElementById("notesInput").value;
+
+            if (notes === "") {
+
+                document.getElementById("notesMessage").textContent =
+                    "Please write some notes!";
+
+            } else {
+
+                localStorage.setItem("studyNotes", notes);
+
+                document.getElementById("notesMessage").textContent =
+                    "Notes saved! ✅";
+
+            }
+        };
+
     </script>
 
 </body>
