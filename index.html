@@ -21,6 +21,7 @@
     <div id="studyArea" style="display: none;">
 
         <!-- SUBJECT SECTION -->
+
         <h2>What do you want to study?</h2>
 
         <input
@@ -35,6 +36,7 @@
 
 
         <!-- NOTES SECTION -->
+
         <h2>Quick Notes 📚</h2>
 
         <textarea
@@ -50,6 +52,7 @@
 
 
         <!-- QUIZ SECTION -->
+
         <h2>Quick Quiz 🧠</h2>
 
         <button id="quizButton">Start Quiz</button>
@@ -60,13 +63,31 @@
 
         <p id="quizResult"></p>
 
+
+        <!-- AI STUDY ASSISTANT -->
+
+        <h2>AI Study Assistant 🤖</h2>
+
+        <textarea
+            id="aiQuestion"
+            placeholder="Ask me anything about your subject..."
+        ></textarea>
+
+        <br>
+
+        <button id="askAIButton">Ask AI</button>
+
+        <p id="aiAnswer"></p>
+
     </div>
 
 
     <!-- JAVASCRIPT -->
+
     <script>
 
         // START LEARNING
+
         document.getElementById("startButton").onclick = function() {
 
             document.getElementById("studyArea").style.display = "block";
@@ -77,6 +98,7 @@
 
 
         // SUBJECT
+
         document.getElementById("continueButton").onclick = function() {
 
             const subject =
@@ -98,6 +120,7 @@
 
 
         // SAVE NOTES
+
         document.getElementById("saveNotesButton").onclick = function() {
 
             const notes =
@@ -121,6 +144,7 @@
 
 
         // QUIZ QUESTIONS
+
         const questions = [
 
             {
@@ -157,6 +181,7 @@
 
 
         // START QUIZ
+
         document.getElementById("quizButton").onclick = function() {
 
             const randomIndex =
@@ -202,6 +227,28 @@
                 answerArea.appendChild(button);
 
             });
+
+        };
+
+
+        // AI STUDY ASSISTANT
+
+        document.getElementById("askAIButton").onclick = function() {
+
+            const question =
+                document.getElementById("aiQuestion").value;
+
+            if (question === "") {
+
+                document.getElementById("aiAnswer").textContent =
+                    "Please enter a question!";
+
+            } else {
+
+                document.getElementById("aiAnswer").textContent =
+                    "AI is thinking... 🤖";
+
+            }
 
         };
 
