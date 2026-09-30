@@ -44,8 +44,19 @@
         <button id="saveNotesButton">Save Notes</button>
 
         <p id="notesMessage"></p>
+        <h2>Quick Quiz 🧠</h2>
 
-    </div>
+        <button id="quizButton">Start Quiz</button>
+
+        <p id="quizQuestion"></p>
+
+        <button id="answerButton" style="display: none;">
+        Photosynthesis
+        </button>
+
+        <p id="quizResult"></p>
+
+        </div>
 
     <!-- JavaScript starts here -->
     <script>
@@ -91,6 +102,20 @@
                     "Notes saved! ✅";
 
             }
+        };
+        document.getElementById("quizButton").onclick = function() {
+
+        document.getElementById("quizQuestion").textContent =
+        "What process do plants use to make food?";
+
+        document.getElementById("answerButton").style.display =
+        "inline-block";
+        };
+
+        document.getElementById("answerButton").onclick = function() {
+
+        document.getElementById("quizResult").textContent =
+        "Correct! 🎉";
         };
 
     </script>
