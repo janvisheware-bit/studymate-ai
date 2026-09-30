@@ -82,8 +82,6 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
-
     <script>
 
         // START LEARNING
@@ -102,7 +100,7 @@
         document.getElementById("continueButton").onclick = function() {
 
             const subject =
-                document.getElementById("subjectInput").value;
+                document.getElementById("subjectInput").value.trim();
 
             if (subject === "") {
 
@@ -124,7 +122,7 @@
         document.getElementById("saveNotesButton").onclick = function() {
 
             const notes =
-                document.getElementById("notesInput").value;
+                document.getElementById("notesInput").value.trim();
 
             if (notes === "") {
 
@@ -233,20 +231,71 @@
 
         // AI STUDY ASSISTANT
 
-        document.getElementById("askAIButton").onclick = function() {
+        document.getElementById("askAIButton").onclick = async function() {
 
             const question =
-                document.getElementById("aiQuestion").value;
+                document.getElementById("aiQuestion").value.trim();
+
+            const subject =
+                document.getElementById("subjectInput").value.trim();
+
+            const answerBox =
+                document.getElementById("aiAnswer");
 
             if (question === "") {
 
-                document.getElementById("aiAnswer").textContent =
+                answerBox.textContent =
                     "Please enter a question!";
 
-            } else {
+                return;
 
-                document.getElementById("aiAnswer").textContent =
-                    "AI is thinking... 🤖";
+            }
+
+
+            answerBox.textContent =
+                "AI is thinking... 🤖";
+
+
+            try {
+
+                const response = await fetch(
+                    "/.netlify/functions/ask-ai",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            question: question,
+                            subject: subject
+                        })
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok) {
+
+                    answerBox.textContent =
+                        data.error || "Something went wrong.";
+
+                    return;
+
+                }
+
+
+                answerBox.textContent =
+                    data.answer || "I couldn't generate an answer.";
+
+
+            } catch (error) {
+
+                answerBox.textContent =
+                    "Could not connect to the AI. Please try again.";
 
             }
 
