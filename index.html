@@ -20,6 +20,7 @@
 
     <div id="studyArea" style="display: none;">
 
+        <!-- SUBJECT SECTION -->
         <h2>What do you want to study?</h2>
 
         <input
@@ -32,6 +33,8 @@
 
         <p id="message"></p>
 
+
+        <!-- NOTES SECTION -->
         <h2>Quick Notes 📚</h2>
 
         <textarea
@@ -44,28 +47,36 @@
         <button id="saveNotesButton">Save Notes</button>
 
         <p id="notesMessage"></p>
+
+
+        <!-- QUIZ SECTION -->
         <h2>Quick Quiz 🧠</h2>
 
         <button id="quizButton">Start Quiz</button>
 
         <p id="quizQuestion"></p>
 
-        <button id="answerButton" style="display: none;">
-        Photosynthesis
-        </button>
+        <div id="answerButtons"></div>
 
         <p id="quizResult"></p>
 
-        </div>
+    </div>
 
-    <!-- JavaScript starts here -->
+
+    <!-- JAVASCRIPT -->
     <script>
 
+        // START LEARNING
         document.getElementById("startButton").onclick = function() {
+
             document.getElementById("studyArea").style.display = "block";
+
             document.getElementById("startButton").style.display = "none";
+
         };
 
+
+        // SUBJECT
         document.getElementById("continueButton").onclick = function() {
 
             const subject =
@@ -82,8 +93,11 @@
                     "Great! Let's learn " + subject + " 📚";
 
             }
+
         };
 
+
+        // SAVE NOTES
         document.getElementById("saveNotesButton").onclick = function() {
 
             const notes =
@@ -102,32 +116,97 @@
                     "Notes saved! ✅";
 
             }
-        };
-        
 
+        };
+
+
+        // QUIZ QUESTIONS
         const questions = [
-        "What process do plants use to make food?",
-        "What is the capital of India?",
-        "How many planets are in our Solar System?"
+
+            {
+                question: "What process do plants use to make food?",
+                answers: [
+                    "Photosynthesis",
+                    "Respiration",
+                    "Digestion"
+                ],
+                correct: "Photosynthesis"
+            },
+
+            {
+                question: "What is the capital of India?",
+                answers: [
+                    "Mumbai",
+                    "New Delhi",
+                    "Kolkata"
+                ],
+                correct: "New Delhi"
+            },
+
+            {
+                question: "How many planets are in our Solar System?",
+                answers: [
+                    "7",
+                    "8",
+                    "9"
+                ],
+                correct: "8"
+            }
+
         ];
 
-        const randomQuestion =
-            questions[Math.floor(Math.random() * questions.length)];
 
-        document.getElementById("quizQuestion").textContent =
-            randomQuestion;
+        // START QUIZ
+        document.getElementById("quizButton").onclick = function() {
 
-        document.getElementById("answerButton").style.display =
-            "inline-block";
-};
+            const randomIndex =
+                Math.floor(Math.random() * questions.length);
 
-        document.getElementById("answerButton").onclick = function() {
+            const question =
+                questions[randomIndex];
 
-        document.getElementById("quizResult").textContent =
-        "Correct! 🎉";
+            document.getElementById("quizQuestion").textContent =
+                question.question;
+
+            document.getElementById("quizResult").textContent = "";
+
+            const answerArea =
+                document.getElementById("answerButtons");
+
+            answerArea.innerHTML = "";
+
+
+            question.answers.forEach(function(answer) {
+
+                const button =
+                    document.createElement("button");
+
+                button.textContent = answer;
+
+                button.onclick = function() {
+
+                    if (answer === question.correct) {
+
+                        document.getElementById("quizResult").textContent =
+                            "Correct! 🎉";
+
+                    } else {
+
+                        document.getElementById("quizResult").textContent =
+                            "Not quite! Try again. ❌";
+
+                    }
+
+                };
+
+                answerArea.appendChild(button);
+
+            });
+
         };
 
     </script>
 
 </body>
+
 </html>
