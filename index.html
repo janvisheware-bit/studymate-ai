@@ -103,14 +103,23 @@
 
             }
         };
-        document.getElementById("quizButton").onclick = function() {
+        
+
+        const questions = [
+        "What process do plants use to make food?",
+        "What is the capital of India?",
+        "How many planets are in our Solar System?"
+        ];
+
+        const randomQuestion =
+            questions[Math.floor(Math.random() * questions.length)];
 
         document.getElementById("quizQuestion").textContent =
-        "What process do plants use to make food?";
+            randomQuestion;
 
         document.getElementById("answerButton").style.display =
-        "inline-block";
-        };
+            "inline-block";
+};
 
         document.getElementById("answerButton").onclick = function() {
 
