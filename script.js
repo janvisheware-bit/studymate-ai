@@ -1,13 +1,8 @@
-```javascript
-/* =========================================
-   STUDYMATE AI - MAIN JAVASCRIPT
-========================================= */
+// ===============================
+// StudyMate AI - Main JavaScript
+// ===============================
 
-
-/* =========================================
-   DATA
-========================================= */
-
+// ---------- App State ----------
 let currentSubject = "";
 let notesSaved = false;
 let quizScore = 0;
@@ -15,183 +10,73 @@ let quizStarted = false;
 let aiUsed = false;
 
 
-/* =========================================
-   GET HTML ELEMENTS
-========================================= */
-
-const startButton = document.getElementById("startButton");
+// ---------- Get HTML Elements ----------
 const homeSection = document.getElementById("homeSection");
+const startButton = document.getElementById("startButton");
 
 const studySection = document.getElementById("studySection");
 const subjectInput = document.getElementById("subjectInput");
 const continueButton = document.getElementById("continueButton");
 const message = document.getElementById("message");
 
-const dashboardSection =
-    document.getElementById("dashboardSection");
+const dashboardSection = document.getElementById("dashboardSection");
+const currentSubjectDisplay = document.getElementById("currentSubject");
+const subjectCount = document.getElementById("subjectCount");
+const notesCount = document.getElementById("notesCount");
+const quizScoreDisplay = document.getElementById("quizScore");
 
-const currentSubjectText =
-    document.getElementById("currentSubject");
+const notesSection = document.getElementById("notesSection");
+const notesInput = document.getElementById("notesInput");
+const saveNotesButton = document.getElementById("saveNotesButton");
+const clearNotesButton = document.getElementById("clearNotesButton");
+const notesMessage = document.getElementById("notesMessage");
 
-const subjectCount =
-    document.getElementById("subjectCount");
+const quizSection = document.getElementById("quizSection");
+const quizButton = document.getElementById("quizButton");
+const quizArea = document.getElementById("quizArea");
+const quizQuestion = document.getElementById("quizQuestion");
+const quizOptions = document.querySelectorAll(".quizOption");
+const quizResult = document.getElementById("quizResult");
+const quizScoreText = document.getElementById("quizScoreText");
 
-const notesCount =
-    document.getElementById("notesCount");
+const assistantSection = document.getElementById("assistantSection");
+const assistantButton = document.getElementById("assistantButton");
+const assistantArea = document.getElementById("assistantArea");
+const explainButton = document.getElementById("explainButton");
+const summaryButton = document.getElementById("summaryButton");
+const revisionButton = document.getElementById("revisionButton");
+const examButton = document.getElementById("examButton");
+const assistantMessage = document.getElementById("assistantMessage");
 
-const quizScoreText =
-    document.getElementById("quizScore");
+const askAISection = document.getElementById("askAISection");
+const aiQuestion = document.getElementById("aiQuestion");
+const askAIButton = document.getElementById("askAIButton");
+const aiAnswerBox = document.getElementById("aiAnswerBox");
+const aiAnswer = document.getElementById("aiAnswer");
 
-const studyProgress =
-    document.getElementById("studyProgress");
+const savedSection = document.getElementById("savedSection");
+const savedNotes = document.getElementById("savedNotes");
 
+const progressSection = document.getElementById("progressSection");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
 
-/* NOTES */
+const toolsSection = document.getElementById("toolsSection");
+const notesTool = document.getElementById("notesTool");
+const quizTool = document.getElementById("quizTool");
+const aiTool = document.getElementById("aiTool");
+const savedTool = document.getElementById("savedTool");
 
-const notesSection =
-    document.getElementById("notesSection");
-
-const notesInput =
-    document.getElementById("notesInput");
-
-const saveNotesButton =
-    document.getElementById("saveNotesButton");
-
-const clearNotesButton =
-    document.getElementById("clearNotesButton");
-
-const notesMessage =
-    document.getElementById("notesMessage");
-
-const savedSection =
-    document.getElementById("savedSection");
-
-const savedNotes =
-    document.getElementById("savedNotes");
-
-
-/* QUIZ */
-
-const quizSection =
-    document.getElementById("quizSection");
-
-const quizButton =
-    document.getElementById("quizButton");
-
-const quizArea =
-    document.getElementById("quizArea");
-
-const quizQuestion =
-    document.getElementById("quizQuestion");
-
-const quizOptions =
-    document.querySelectorAll(".quizOption");
-
-const quizResult =
-    document.getElementById("quizResult");
-
-const quizScoreDisplay =
-    document.getElementById("quizScoreText");
+const navigationSection = document.getElementById("navigationSection");
+const dashboardButton = document.getElementById("dashboardButton");
+const notesNavigationButton = document.getElementById("notesNavigationButton");
+const quizNavigationButton = document.getElementById("quizNavigationButton");
+const aiNavigationButton = document.getElementById("aiNavigationButton");
 
 
-/* AI ASSISTANT */
-
-const assistantSection =
-    document.getElementById("assistantSection");
-
-const assistantButton =
-    document.getElementById("assistantButton");
-
-const assistantArea =
-    document.getElementById("assistantArea");
-
-const assistantMessage =
-    document.getElementById("assistantMessage");
-
-const explainButton =
-    document.getElementById("explainButton");
-
-const summaryButton =
-    document.getElementById("summaryButton");
-
-const revisionButton =
-    document.getElementById("revisionButton");
-
-const examButton =
-    document.getElementById("examButton");
-
-
-/* ASK AI */
-
-const askAISection =
-    document.getElementById("askAISection");
-
-const aiQuestion =
-    document.getElementById("aiQuestion");
-
-const askAIButton =
-    document.getElementById("askAIButton");
-
-const aiAnswerBox =
-    document.getElementById("aiAnswerBox");
-
-const aiAnswer =
-    document.getElementById("aiAnswer");
-
-
-/* PROGRESS */
-
-const progressSection =
-    document.getElementById("progressSection");
-
-const progressFill =
-    document.getElementById("progressFill");
-
-const progressText =
-    document.getElementById("progressText");
-
-
-/* TOOLS */
-
-const toolsSection =
-    document.getElementById("toolsSection");
-
-const notesTool =
-    document.getElementById("notesTool");
-
-const quizTool =
-    document.getElementById("quizTool");
-
-const aiTool =
-    document.getElementById("aiTool");
-
-const savedTool =
-    document.getElementById("savedTool");
-
-
-/* NAVIGATION */
-
-const navigationSection =
-    document.getElementById("navigationSection");
-
-const dashboardButton =
-    document.getElementById("dashboardButton");
-
-const notesNavigationButton =
-    document.getElementById("notesNavigationButton");
-
-const quizNavigationButton =
-    document.getElementById("quizNavigationButton");
-
-const aiNavigationButton =
-    document.getElementById("aiNavigationButton");
-
-
-/* =========================================
-   SHOW SECTION
-========================================= */
-
+// ---------- Helper Function ----------
 function showSection(section) {
+    if (!section) return;
 
     section.classList.remove("hidden");
 
@@ -199,343 +84,388 @@ function showSection(section) {
         behavior: "smooth",
         block: "start"
     });
-
 }
 
 
-/* =========================================
-   START LEARNING
-========================================= */
+// ---------- Start Learning ----------
+if (startButton) {
+    startButton.addEventListener("click", function () {
 
-startButton.addEventListener("click", function () {
+        if (homeSection) {
+            homeSection.classList.add("hidden");
+        }
 
-    homeSection.classList.add("hidden");
+        showSection(studySection);
+        showSection(dashboardSection);
+        showSection(notesSection);
+        showSection(quizSection);
+        showSection(assistantSection);
+        showSection(askAISection);
+        showSection(savedSection);
+        showSection(progressSection);
+        showSection(toolsSection);
+        showSection(navigationSection);
 
-    studySection.classList.remove("hidden");
-
-    dashboardSection.classList.remove("hidden");
-
-    notesSection.classList.remove("hidden");
-
-    quizSection.classList.remove("hidden");
-
-    assistantSection.classList.remove("hidden");
-
-    askAISection.classList.remove("hidden");
-
-    savedSection.classList.remove("hidden");
-
-    progressSection.classList.remove("hidden");
-
-    toolsSection.classList.remove("hidden");
-
-    navigationSection.classList.remove("hidden");
-
-    studySection.scrollIntoView({
-        behavior: "smooth"
+        if (subjectInput) {
+            subjectInput.focus();
+        }
     });
-
-});
-
-
-/* =========================================
-   CONTINUE / SUBJECT
-========================================= */
-
-continueButton.addEventListener("click", function () {
-
-    const subject =
-        subjectInput.value.trim();
-
-    if (subject === "") {
-
-        message.textContent =
-            "⚠️ Please enter a subject first.";
-
-        return;
-
-    }
-
-    currentSubject = subject;
-
-    localStorage.setItem(
-        "studySubject",
-        currentSubject
-    );
-
-    currentSubjectText.textContent =
-        "Currently studying: " + currentSubject;
-
-    subjectCount.textContent = "1";
-
-    message.textContent =
-        "Great! Let's learn " +
-        currentSubject +
-        " 📚";
-
-    updateProgress();
-
-});
+}
 
 
-/* =========================================
-   SAVE NOTES
-========================================= */
+// ---------- Continue With Subject ----------
+if (continueButton) {
+    continueButton.addEventListener("click", function () {
 
-saveNotesButton.addEventListener("click", function () {
+        const subject = subjectInput
+            ? subjectInput.value.trim()
+            : "";
 
-    const notes =
-        notesInput.value.trim();
+        if (subject === "") {
+            if (message) {
+                message.textContent = "Please enter a subject first 📚";
+            }
+            return;
+        }
 
-    if (notes === "") {
+        currentSubject = subject;
 
-        notesMessage.textContent =
-            "⚠️ Please write some notes first.";
+        localStorage.setItem("studySubject", currentSubject);
 
-        return;
+        if (message) {
+            message.textContent =
+                "Great! Let's learn " + currentSubject + " 📚";
+        }
 
-    }
+        if (currentSubjectDisplay) {
+            currentSubjectDisplay.textContent = currentSubject;
+        }
 
-    localStorage.setItem(
-        "studyNotes",
-        notes
-    );
+        if (subjectCount) {
+            subjectCount.textContent = "1";
+        }
 
-    notesSaved = true;
-
-    notesCount.textContent = "1";
-
-    notesMessage.textContent =
-        "Notes saved successfully! ✅";
-
-    displaySavedNotes();
-
-    updateProgress();
-
-});
-
-
-/* =========================================
-   CLEAR NOTES
-========================================= */
-
-clearNotesButton.addEventListener("click", function () {
-
-    notesInput.value = "";
-
-    localStorage.removeItem(
-        "studyNotes"
-    );
-
-    notesSaved = false;
-
-    notesCount.textContent = "0";
-
-    notesMessage.textContent =
-        "Notes cleared.";
-
-    displaySavedNotes();
-
-    updateProgress();
-
-});
+        updateProgress();
+    });
+}
 
 
-/* =========================================
-   DISPLAY SAVED NOTES
-========================================= */
+// ---------- Save Notes ----------
+if (saveNotesButton) {
+    saveNotesButton.addEventListener("click", function () {
 
+        const notes = notesInput
+            ? notesInput.value.trim()
+            : "";
+
+        if (notes === "") {
+            if (notesMessage) {
+                notesMessage.textContent =
+                    "Please write something before saving 📝";
+            }
+            return;
+        }
+
+        localStorage.setItem("studyNotes", notes);
+
+        notesSaved = true;
+
+        if (notesMessage) {
+            notesMessage.textContent = "Notes saved successfully! ✅";
+        }
+
+        displaySavedNotes();
+        updateProgress();
+    });
+}
+
+
+// ---------- Clear Notes ----------
+if (clearNotesButton) {
+    clearNotesButton.addEventListener("click", function () {
+
+        localStorage.removeItem("studyNotes");
+
+        if (notesInput) {
+            notesInput.value = "";
+        }
+
+        notesSaved = false;
+
+        if (notesMessage) {
+            notesMessage.textContent = "Notes cleared 🗑️";
+        }
+
+        displaySavedNotes();
+        updateProgress();
+    });
+}
+
+
+// ---------- Display Saved Notes ----------
 function displaySavedNotes() {
 
-    const saved =
-        localStorage.getItem("studyNotes");
+    const saved = localStorage.getItem("studyNotes");
 
-    if (!saved) {
+    if (!savedNotes) return;
 
-        savedNotes.innerHTML =
-            '<p class="emptyMessage">No notes saved yet.</p>';
-
-        return;
-
+    if (saved) {
+        savedNotes.textContent = saved;
+    } else {
+        savedNotes.textContent = "No saved notes yet.";
     }
-
-    savedNotes.innerHTML = `
-        <div class="savedNote">
-            ${saved}
-        </div>
-    `;
-
 }
 
 
-/* =========================================
-   QUIZ
-========================================= */
+// ---------- Quiz ----------
+if (quizButton) {
+    quizButton.addEventListener("click", function () {
 
-quizButton.addEventListener("click", function () {
+        quizStarted = true;
+        quizScore = 0;
 
-    quizStarted = true;
+        if (quizArea) {
+            quizArea.classList.remove("hidden");
+        }
 
-    quizArea.classList.remove("hidden");
+        if (quizQuestion) {
+            quizQuestion.textContent =
+                "What process do plants use to make food? 🌱";
+        }
 
-    quizQuestion.textContent =
-        "What process do plants use to make food? 🌱";
+        if (quizResult) {
+            quizResult.textContent = "";
+        }
 
-    quizOptions[0].textContent =
-        "Photosynthesis";
+        if (quizScoreText) {
+            quizScoreText.textContent = "Score: 0";
+        }
 
-    quizOptions[1].textContent =
-        "Respiration";
-
-    quizOptions[2].textContent =
-        "Digestion";
-
-    quizOptions[3].textContent =
-        "Transpiration";
-
-    quizScore = 0;
-
-    quizScoreDisplay.textContent =
-        "Score: 0";
-
-    quizResult.textContent =
-        "";
-
-});
+        updateProgress();
+    });
+}
 
 
-/* =========================================
-   QUIZ ANSWERS
-========================================= */
-
+// ---------- Quiz Options ----------
 quizOptions.forEach(function (option) {
 
     option.addEventListener("click", function () {
 
-        if (!quizStarted) {
-            return;
-        }
+        const answer = option.textContent.trim();
 
-        if (
-            option.textContent ===
-            "Photosynthesis"
-        ) {
+        if (answer.toLowerCase() === "photosynthesis") {
 
             quizScore = 1;
 
-            quizResult.textContent =
-                "🎉 Correct! Great job!";
+            if (quizResult) {
+                quizResult.textContent =
+                    "Correct! 🎉 Plants use photosynthesis to make food.";
+            }
 
         } else {
 
             quizScore = 0;
 
-            quizResult.textContent =
-                "❌ Not quite. The correct answer is Photosynthesis.";
-
+            if (quizResult) {
+                quizResult.textContent =
+                    "Not quite! ❌ The correct answer is Photosynthesis.";
+            }
         }
 
-        quizScoreDisplay.textContent =
-            "Score: " + quizScore;
+        if (quizScoreText) {
+            quizScoreText.textContent =
+                "Score: " + quizScore + "/1";
+        }
 
-        quizScoreText.textContent =
-            quizScore;
+        if (quizScoreDisplay) {
+            quizScoreDisplay.textContent =
+                quizScore + "/1";
+        }
 
         updateProgress();
-
     });
-
 });
 
 
-/* =========================================
-   AI STUDY ASSISTANT
-========================================= */
+// ---------- AI Study Assistant ----------
+if (assistantButton) {
+    assistantButton.addEventListener("click", function () {
 
-assistantButton.addEventListener("click", function () {
+        if (assistantArea) {
+            assistantArea.classList.remove("hidden");
+        }
 
-    assistantArea.classList.remove("hidden");
-
-    assistantMessage.textContent =
-        "Choose what you want help with below. 🤖📚";
-
-});
-
-
-/* =========================================
-   AI ACTIONS
-========================================= */
-
-explainButton.addEventListener("click", function () {
-
-    assistantMessage.textContent =
-        "📖 Enter a topic and I can help break it down into simple concepts.";
-
-});
+        if (assistantMessage) {
+            assistantMessage.textContent =
+                "Choose what you want help with below 🤖📚";
+        }
+    });
+}
 
 
-summaryButton.addEventListener("click", function () {
+// ---------- Explain Topic ----------
+if (explainButton) {
+    explainButton.addEventListener("click", function () {
 
-    assistantMessage.textContent =
-        "📝 I can help turn long study material into short revision points.";
+        aiUsed = true;
 
-});
+        const subject =
+            currentSubject || "your topic";
 
+        if (assistantMessage) {
+            assistantMessage.textContent =
+                "📖 Explanation: " + subject +
+                " can be understood by breaking it into small concepts, learning the main ideas, and then practicing with examples.";
+        }
 
-revisionButton.addEventListener("click", function () {
-
-    assistantMessage.textContent =
-        "🔄 Try reviewing your saved notes and then testing yourself with the quiz.";
-
-});
-
-
-examButton.addEventListener("click", function () {
-
-    assistantMessage.textContent =
-        "🎯 For exam preparation, focus on key concepts, practice questions and regular revision.";
-
-});
+        updateProgress();
+    });
+}
 
 
-/* =========================================
-   ASK AI
-========================================= */
+// ---------- Summary ----------
+if (summaryButton) {
+    summaryButton.addEventListener("click", function () {
 
-askAIButton.addEventListener("click", function () {
+        aiUsed = true;
 
-    const question =
-        aiQuestion.value.trim();
+        const subject =
+            currentSubject || "your topic";
 
-    if (question === "") {
+        if (assistantMessage) {
+            assistantMessage.textContent =
+                "📝 Summary: Focus on the key definitions, important concepts, examples, and formulas related to " +
+                subject + ".";
+        }
 
-        aiAnswerBox.classList.remove("hidden");
-
-        aiAnswer.textContent =
-            "⚠️ Please type a question first.";
-
-        return;
-
-    }
-
-    aiUsed = true;
-
-    aiAnswerBox.classList.remove("hidden");
-
-    aiAnswer.textContent =
-        "🤖 StudyMate AI: Here's a study-friendly response to your question: " +
-        question +
-        ". Keep exploring the topic and connect it with your class notes! 📚";
-
-    updateProgress();
-
-});
+        updateProgress();
+    });
+}
 
 
-/* =========================================
-   PROGRESS
-========================================= */
+// ---------- Revision ----------
+if (revisionButton) {
+    revisionButton.addEventListener("click", function () {
 
+        aiUsed = true;
+
+        const subject =
+            currentSubject || "your topic";
+
+        if (assistantMessage) {
+            assistantMessage.textContent =
+                "🔄 Revision Plan: Review " +
+                subject +
+                " for 20 minutes, make short notes, practice questions, and test yourself without looking at your notes.";
+        }
+
+        updateProgress();
+    });
+}
+
+
+// ---------- Exam Preparation ----------
+if (examButton) {
+    examButton.addEventListener("click", function () {
+
+        aiUsed = true;
+
+        const subject =
+            currentSubject || "your subject";
+
+        if (assistantMessage) {
+            assistantMessage.textContent =
+                "🎯 Exam Tip: For " +
+                subject +
+                ", revise important topics first, practice previous questions, and take short timed quizzes.";
+        }
+
+        updateProgress();
+    });
+}
+
+
+// ---------- Ask AI ----------
+if (askAIButton) {
+    askAIButton.addEventListener("click", function () {
+
+        const question = aiQuestion
+            ? aiQuestion.value.trim()
+            : "";
+
+        if (question === "") {
+
+            if (aiAnswerBox) {
+                aiAnswerBox.classList.remove("hidden");
+            }
+
+            if (aiAnswer) {
+                aiAnswer.textContent =
+                    "Please type a question first 🤔";
+            }
+
+            return;
+        }
+
+        aiUsed = true;
+
+        if (aiAnswerBox) {
+            aiAnswerBox.classList.remove("hidden");
+        }
+
+        let response =
+            "That's a great study question! 📚 Try breaking the topic into smaller concepts and reviewing an example.";
+
+        const lowerQuestion = question.toLowerCase();
+
+        if (lowerQuestion.includes("photosynthesis")) {
+            response =
+                "Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to produce food (glucose) and release oxygen. 🌱";
+        }
+
+        else if (
+            lowerQuestion.includes("study") ||
+            lowerQuestion.includes("learn")
+        ) {
+            response =
+                "A good study method is: understand the concept → make short notes → practice questions → test yourself → revise later. 📚";
+        }
+
+        else if (
+            lowerQuestion.includes("exam") ||
+            lowerQuestion.includes("exams")
+        ) {
+            response =
+                "For exams, focus on important topics, practice questions, revise your mistakes, and use short study sessions with breaks. 🎯";
+        }
+
+        else if (
+            lowerQuestion.includes("math") ||
+            lowerQuestion.includes("mathematics")
+        ) {
+            response =
+                "For mathematics, first understand the formula, then solve a simple example, and finally practice several questions without looking at the solution. ➗";
+        }
+
+        else if (
+            lowerQuestion.includes("computer") ||
+            lowerQuestion.includes("programming") ||
+            lowerQuestion.includes("coding")
+        ) {
+            response =
+                "For programming, learn one concept at a time and immediately practice it by writing small programs. 💻";
+        }
+
+        if (aiAnswer) {
+            aiAnswer.textContent = response;
+        }
+
+        updateProgress();
+    });
+}
+
+
+// ---------- Update Progress ----------
 function updateProgress() {
 
     let progress = 0;
@@ -556,86 +486,70 @@ function updateProgress() {
         progress += 25;
     }
 
-    progressFill.style.width =
-        progress + "%";
+    if (progressFill) {
+        progressFill.style.width = progress + "%";
+    }
 
-    progressText.textContent =
-        progress + "% completed";
-
-    studyProgress.textContent =
-        progress + "%";
-
+    if (progressText) {
+        progressText.textContent =
+            progress + "% Complete";
+    }
 }
 
 
-/* =========================================
-   STUDY TOOLS
-========================================= */
+// ---------- Study Tools ----------
+if (notesTool) {
+    notesTool.addEventListener("click", function () {
+        showSection(notesSection);
+    });
+}
 
-notesTool.addEventListener("click", function () {
+if (quizTool) {
+    quizTool.addEventListener("click", function () {
+        showSection(quizSection);
+    });
+}
 
-    showSection(notesSection);
+if (aiTool) {
+    aiTool.addEventListener("click", function () {
+        showSection(assistantSection);
+    });
+}
 
-});
-
-
-quizTool.addEventListener("click", function () {
-
-    showSection(quizSection);
-
-});
-
-
-aiTool.addEventListener("click", function () {
-
-    showSection(assistantSection);
-
-});
-
-
-savedTool.addEventListener("click", function () {
-
-    showSection(savedSection);
-
-});
+if (savedTool) {
+    savedTool.addEventListener("click", function () {
+        showSection(savedSection);
+    });
+}
 
 
-/* =========================================
-   NAVIGATION
-========================================= */
+// ---------- Navigation ----------
+if (dashboardButton) {
+    dashboardButton.addEventListener("click", function () {
+        showSection(dashboardSection);
+    });
+}
 
-dashboardButton.addEventListener("click", function () {
+if (notesNavigationButton) {
+    notesNavigationButton.addEventListener("click", function () {
+        showSection(notesSection);
+    });
+}
 
-    showSection(dashboardSection);
+if (quizNavigationButton) {
+    quizNavigationButton.addEventListener("click", function () {
+        showSection(quizSection);
+    });
+}
 
-});
-
-
-notesNavigationButton.addEventListener("click", function () {
-
-    showSection(notesSection);
-
-});
-
-
-quizNavigationButton.addEventListener("click", function () {
-
-    showSection(quizSection);
-
-});
-
-
-aiNavigationButton.addEventListener("click", function () {
-
-    showSection(assistantSection);
-
-});
+if (aiNavigationButton) {
+    aiNavigationButton.addEventListener("click", function () {
+        showSection(assistantSection);
+    });
+}
 
 
-/* =========================================
-   LOAD SAVED DATA
-========================================= */
-
+// ---------- Load Saved Data ----------
 window.addEventListener("load", function () {
 
     const savedSubject =
@@ -646,36 +560,31 @@ window.addEventListener("load", function () {
 
     if (savedSubject) {
 
-        currentSubject =
-            savedSubject;
+        currentSubject = savedSubject;
 
-        subjectInput.value =
-            savedSubject;
+        if (subjectInput) {
+            subjectInput.value = savedSubject;
+        }
 
-        currentSubjectText.textContent =
-            "Currently studying: " +
-            savedSubject;
+        if (currentSubjectDisplay) {
+            currentSubjectDisplay.textContent =
+                savedSubject;
+        }
 
-        subjectCount.textContent =
-            "1";
-
+        if (subjectCount) {
+            subjectCount.textContent = "1";
+        }
     }
 
     if (savedNotes) {
 
-        notesInput.value =
-            savedNotes;
-
         notesSaved = true;
 
-        notesCount.textContent =
-            "1";
-
+        if (notesInput) {
+            notesInput.value = savedNotes;
+        }
     }
 
     displaySavedNotes();
-
     updateProgress();
-
 });
-```
