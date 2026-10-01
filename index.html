@@ -109,12 +109,27 @@
 
             } else {
 
+                localStorage.setItem("studySubject", subject);
+
                 document.getElementById("message").textContent =
                     "Great! Let's learn " + subject + " 📚";
 
             }
 
         };
+
+
+        // LOAD SAVED SUBJECT
+
+        const savedSubject =
+            localStorage.getItem("studySubject");
+
+        if (savedSubject) {
+
+            document.getElementById("subjectInput").value =
+                savedSubject;
+
+        }
 
 
         // SAVE NOTES
@@ -139,6 +154,19 @@
             }
 
         };
+
+
+        // LOAD SAVED NOTES
+
+        const savedNotes =
+            localStorage.getItem("studyNotes");
+
+        if (savedNotes) {
+
+            document.getElementById("notesInput").value =
+                savedNotes;
+
+        }
 
 
         // QUIZ QUESTIONS
