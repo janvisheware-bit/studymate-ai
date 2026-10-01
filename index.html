@@ -1,194 +1,93 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyMate AI 🎓</title>
+    <title>StudyMate AI</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+    <!-- ================= HEADER ================= -->
 
     <header class="header">
-
-        <div class="logo">
-            🎓 StudyMate AI
+        <div class="container">
+            <h1>StudyMate AI 🎓</h1>
+            <p>Your AI-powered study companion.</p>
         </div>
-
-        <p>
-            Your AI-powered study companion
-        </p>
-
     </header>
 
 
-    <!-- =========================
-         MAIN CONTAINER
-    ========================== -->
-
     <main class="container">
 
+        <!-- ================= HOME ================= -->
 
-        <!-- =========================
-             1. HOME / START LEARNING
-        ========================== -->
+        <section id="homeSection" class="card hero">
 
-        <section id="homeSection" class="card">
+            <h2>Welcome to StudyMate AI 👋</h2>
 
-            <div class="hero">
+            <p>
+                Learn smarter, organize your notes, practice quizzes,
+                and get study assistance in one place.
+            </p>
 
-                <h1>
-                    Learn Smarter. Study Better. 🚀
-                </h1>
-
-                <p>
-                    Organize your studies, create notes,
-                    practice quizzes and learn with AI.
-                </p>
-
-                <button id="startButton" class="primaryButton">
-                    Start Learning 🚀
-                </button>
-
-            </div>
+            <button id="startButton" class="primaryButton">
+                Start Learning 🚀
+            </button>
 
         </section>
 
 
-
-        <!-- =========================
-             2. SUBJECT SELECTION
-        ========================== -->
+        <!-- ================= SUBJECT ================= -->
 
         <section id="studySection" class="card hidden">
 
-            <h2>
-                📚 What do you want to study?
-            </h2>
+            <h2>Choose Your Subject 📚</h2>
 
-            <p>
-                Enter your subject and let's get started.
-            </p>
+            <input
+                type="text"
+                id="subjectInput"
+                placeholder="Enter a subject..."
+            >
 
-            <div class="inputGroup">
-
-                <input
-                    type="text"
-                    id="subjectInput"
-                    placeholder="Enter a subject..."
-                >
-
-                <button id="continueButton" class="primaryButton">
-                    Continue ➜
-                </button>
-
-            </div>
+            <button id="continueButton" class="primaryButton">
+                Continue
+            </button>
 
             <p id="message" class="message"></p>
 
         </section>
 
 
+        <!-- ================= DASHBOARD ================= -->
 
-        <!-- =========================
-             DASHBOARD
-             8. STUDY PROGRESS
-        ========================== -->
+        <section id="dashboardSection" class="card hidden">
 
-        <section id="dashboardSection" class="hidden">
-
-            <div class="dashboardHeader">
-
-                <div>
-
-                    <h2>
-                        📊 Study Dashboard
-                    </h2>
-
-                    <p id="currentSubject">
-                        No subject selected
-                    </p>
-
-                </div>
-
-            </div>
-
+            <h2>Study Dashboard 📊</h2>
 
             <div class="statsGrid">
 
                 <div class="statCard">
-
-                    <span class="statIcon">
-                        📚
-                    </span>
-
-                    <h3 id="subjectCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Subjects
-                    </p>
-
+                    <h3>Current Subject</h3>
+                    <p id="currentSubject">Not selected</p>
                 </div>
 
-
                 <div class="statCard">
-
-                    <span class="statIcon">
-                        📝
-                    </span>
-
-                    <h3 id="notesCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Notes Saved
-                    </p>
-
+                    <h3>Subjects</h3>
+                    <p id="subjectCount">0</p>
                 </div>
 
-
                 <div class="statCard">
-
-                    <span class="statIcon">
-                        🧠
-                    </span>
-
-                    <h3 id="quizScore">
-                        0
-                    </h3>
-
-                    <p>
-                        Quiz Score
-                    </p>
-
+                    <h3>Notes</h3>
+                    <p id="notesCount">0</p>
                 </div>
 
-
                 <div class="statCard">
-
-                    <span class="statIcon">
-                        🔥
-                    </span>
-
-                    <h3 id="studyProgress">
-                        0%
-                    </h3>
-
-                    <p>
-                        Study Progress
-                    </p>
-
+                    <h3>Quiz Score</h3>
+                    <p id="quizScore">0/1</p>
                 </div>
 
             </div>
@@ -196,40 +95,25 @@
         </section>
 
 
-
-        <!-- =========================
-             3. QUICK NOTES
-        ========================== -->
+        <!-- ================= QUICK NOTES ================= -->
 
         <section id="notesSection" class="card hidden">
 
-            <h2>
-                ⚡ Quick Notes
-            </h2>
-
-            <p>
-                Write important points while studying.
-            </p>
+            <h2>Quick Notes 📝</h2>
 
             <textarea
                 id="notesInput"
                 placeholder="Write your study notes here..."
             ></textarea>
 
-            <div class="buttonRow">
+            <div class="buttonGroup">
 
-                <button
-                    id="saveNotesButton"
-                    class="primaryButton"
-                >
-                    💾 Save Notes
+                <button id="saveNotesButton" class="primaryButton">
+                    Save Notes 💾
                 </button>
 
-                <button
-                    id="clearNotesButton"
-                    class="secondaryButton"
-                >
-                    🗑️ Clear
+                <button id="clearNotesButton" class="secondaryButton">
+                    Clear Notes 🗑️
                 </button>
 
             </div>
@@ -239,52 +123,44 @@
         </section>
 
 
-
-        <!-- =========================
-             4. QUIZ
-        ========================== -->
+        <!-- ================= QUIZ ================= -->
 
         <section id="quizSection" class="card hidden">
 
-            <h2>
-                🧠 Test Your Knowledge
-            </h2>
+            <h2>Study Quiz 🧠</h2>
 
             <p>
-                Take a quick quiz and check your understanding.
+                Test your knowledge with a quick question.
             </p>
 
-            <button
-                id="quizButton"
-                class="primaryButton"
-            >
-                Start Quiz 🎯
+            <button id="quizButton" class="primaryButton">
+                Start Quiz
             </button>
 
 
-            <div id="quizArea" class="quizArea hidden">
+            <div id="quizArea" class="hidden">
 
                 <h3 id="quizQuestion">
-                    Question will appear here.
+                    What process do plants use to make food? 🌱
                 </h3>
 
 
-                <div id="quizOptions" class="quizOptions">
+                <div class="quizOptions">
 
                     <button class="quizOption">
-                        Option A
+                        Photosynthesis
                     </button>
 
                     <button class="quizOption">
-                        Option B
+                        Respiration
                     </button>
 
                     <button class="quizOption">
-                        Option C
+                        Digestion
                     </button>
 
                     <button class="quizOption">
-                        Option D
+                        Transpiration
                     </button>
 
                 </div>
@@ -301,255 +177,144 @@
         </section>
 
 
-
-        <!-- =========================
-             5. AI STUDY ASSISTANT
-        ========================== -->
+        <!-- ================= AI STUDY ASSISTANT ================= -->
 
         <section id="assistantSection" class="card hidden">
 
-            <h2>
-                🤖 AI Study Assistant
-            </h2>
+            <h2>AI Study Assistant 🤖</h2>
 
             <p>
-                Get help understanding difficult topics,
-                revising concepts and preparing for exams.
+                Get help with explanations, summaries,
+                revision, and exam preparation.
             </p>
 
-            <button
-                id="assistantButton"
-                class="primaryButton"
-            >
-                🤖 Open AI Study Assistant
+            <button id="assistantButton" class="primaryButton">
+                Open AI Study Assistant
             </button>
 
 
-            <div id="assistantArea" class="assistantBox hidden">
+            <div id="assistantArea" class="hidden">
 
-                <h3>
-                    👋 How can I help you?
-                </h3>
+                <div class="buttonGroup">
 
-                <div class="assistantActions">
-
-                    <button id="explainButton">
-                        📖 Explain a Topic
+                    <button id="explainButton" class="secondaryButton">
+                        Explain Topic 📖
                     </button>
 
-                    <button id="summaryButton">
-                        📝 Summarize
+                    <button id="summaryButton" class="secondaryButton">
+                        Give Summary 📝
                     </button>
 
-                    <button id="revisionButton">
-                        🔄 Help Me Revise
+                    <button id="revisionButton" class="secondaryButton">
+                        Revision Plan 🔄
                     </button>
 
-                    <button id="examButton">
-                        🎯 Exam Preparation
+                    <button id="examButton" class="secondaryButton">
+                        Exam Preparation 🎯
                     </button>
 
                 </div>
 
-                <p id="assistantMessage"></p>
+                <p id="assistantMessage" class="message"></p>
 
             </div>
 
         </section>
 
 
-
-        <!-- =========================
-             6. ASK AI
-        ========================== -->
+        <!-- ================= ASK AI ================= -->
 
         <section id="askAISection" class="card hidden">
 
-            <h2>
-                💬 Ask AI
-            </h2>
+            <h2>Ask AI 💬</h2>
 
             <p>
-                Have a question? Ask StudyMate AI.
+                Ask a study-related question.
             </p>
 
+            <textarea
+                id="aiQuestion"
+                placeholder="Ask your question..."
+            ></textarea>
 
-            <div class="aiInput">
-
-                <input
-                    type="text"
-                    id="aiQuestion"
-                    placeholder="Ask your study question..."
-                >
-
-                <button
-                    id="askAIButton"
-                    class="primaryButton"
-                >
-                    Ask AI 🔍
-                </button>
-
-            </div>
+            <button id="askAIButton" class="primaryButton">
+                Ask AI 🤖
+            </button>
 
 
-            <div
-                id="aiAnswerBox"
-                class="answerBox hidden"
-            >
+            <div id="aiAnswerBox" class="hidden">
 
-                <h3>
-                    🤖 StudyMate AI
-                </h3>
+                <h3>AI Answer</h3>
 
-                <p id="aiAnswer">
-                    Your answer will appear here.
-                </p>
+                <p id="aiAnswer"></p>
 
             </div>
 
         </section>
 
 
-
-        <!-- =========================
-             7. SAVED NOTES
-        ========================== -->
+        <!-- ================= SAVED NOTES ================= -->
 
         <section id="savedSection" class="card hidden">
 
-            <h2>
-                💾 Your Saved Notes
-            </h2>
-
-            <p>
-                Your saved study material is stored here.
-            </p>
+            <h2>Saved Notes 📚</h2>
 
             <div id="savedNotes">
-
-                <p class="emptyMessage">
-                    No notes saved yet.
-                </p>
-
+                No saved notes yet.
             </div>
 
         </section>
 
 
-
-        <!-- =========================
-             9. STUDY PROGRESS
-        ========================== -->
+        <!-- ================= STUDY PROGRESS ================= -->
 
         <section id="progressSection" class="card hidden">
 
-            <h2>
-                📈 Your Study Progress
-            </h2>
+            <h2>Study Progress 📈</h2>
 
-            <p>
-                Keep learning and improve your progress!
+            <div class="progressBar">
+
+                <div id="progressFill" class="progressFill"></div>
+
+            </div>
+
+            <p id="progressText">
+                0% Complete
             </p>
-
-
-            <div class="progressContainer">
-
-                <div class="progressBar">
-
-                    <div
-                        id="progressFill"
-                        class="progressFill"
-                    ></div>
-
-                </div>
-
-                <p id="progressText">
-                    0% completed
-                </p>
-
-            </div>
-
-
-            <div class="goals">
-
-                <div class="goal">
-
-                    <span>
-                        📝
-                    </span>
-
-                    <p>
-                        Create your first notes
-                    </p>
-
-                </div>
-
-
-                <div class="goal">
-
-                    <span>
-                        🧠
-                    </span>
-
-                    <p>
-                        Complete a quiz
-                    </p>
-
-                </div>
-
-
-                <div class="goal">
-
-                    <span>
-                        🤖
-                    </span>
-
-                    <p>
-                        Ask AI a question
-                    </p>
-
-                </div>
-
-            </div>
 
         </section>
 
 
+        <!-- ================= STUDY TOOLS ================= -->
 
-        <!-- =========================
-             10. STUDY TOOLS
-        ========================== -->
+        <section id="toolsSection" class="card hidden">
 
-        <section
-            id="toolsSection"
-            class="card hidden"
-        >
-
-            <h2>
-                🛠️ Study Tools
-            </h2>
-
-            <p>
-                Everything you need for smarter studying.
-            </p>
-
+            <h2>Study Tools 🛠️</h2>
 
             <div class="toolsGrid">
 
-                <button id="notesTool">
-                    ⚡ Quick Notes
+                <button id="notesTool" class="toolCard">
+                    📝
+                    <strong>Quick Notes</strong>
+                    <span>Write and save notes</span>
                 </button>
 
-                <button id="quizTool">
-                    🧠 Quiz
+                <button id="quizTool" class="toolCard">
+                    🧠
+                    <strong>Quiz</strong>
+                    <span>Test your knowledge</span>
                 </button>
 
-                <button id="aiTool">
-                    🤖 AI Assistant
+                <button id="aiTool" class="toolCard">
+                    🤖
+                    <strong>AI Assistant</strong>
+                    <span>Get study help</span>
                 </button>
 
-                <button id="savedTool">
-                    💾 Saved Notes
+                <button id="savedTool" class="toolCard">
+                    📚
+                    <strong>Saved Notes</strong>
+                    <span>View your notes</span>
                 </button>
 
             </div>
@@ -557,64 +322,51 @@
         </section>
 
 
+        <!-- ================= NAVIGATION ================= -->
 
-        <!-- =========================
-             NAVIGATION
-        ========================== -->
+        <section id="navigationSection" class="card hidden">
 
-        <section
-            id="navigationSection"
-            class="navigation hidden"
-        >
+            <h2>Quick Navigation 🧭</h2>
 
-            <button id="dashboardButton">
-                📊 Dashboard
-            </button>
+            <div class="buttonGroup">
 
-            <button id="notesNavigationButton">
-                📝 Notes
-            </button>
+                <button id="dashboardButton" class="secondaryButton">
+                    Dashboard
+                </button>
 
-            <button id="quizNavigationButton">
-                🧠 Quiz
-            </button>
+                <button id="notesNavigationButton" class="secondaryButton">
+                    Notes
+                </button>
 
-            <button id="aiNavigationButton">
-                🤖 AI
-            </button>
+                <button id="quizNavigationButton" class="secondaryButton">
+                    Quiz
+                </button>
+
+                <button id="aiNavigationButton" class="secondaryButton">
+                    AI Assistant
+                </button>
+
+            </div>
 
         </section>
-
 
     </main>
 
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- ================= FOOTER ================= -->
 
     <footer class="footer">
 
         <p>
-            🎓 StudyMate AI
-        </p>
-
-        <p>
-            Learn smarter. Study better.
+            StudyMate AI 🎓 — Learn smarter, study better.
         </p>
 
     </footer>
 
 
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+    <!-- ================= JAVASCRIPT ================= -->
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
-```
